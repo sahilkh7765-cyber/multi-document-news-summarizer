@@ -1,0 +1,216 @@
+{
+ "mode": "demo",
+ "cluster_acc": 1.0,
+ "results": [
+  {
+   "event": "E2",
+   "n_src": 4,
+   "n_sent": 24,
+   "pool": 10,
+   "summary": "State XI defeated Northern XI by six wickets in the final on Sunday evening. The win gives State XI their first title in twelve years. The final was played at Green Park Stadium in front of a full house. Sethi indicated after the match that he is considering retirement from the format. Rain delayed the start of play by forty minutes on the morning of the final.",
+   "detected": 5,
+   "tp": 4,
+   "fp": 1,
+   "fn": 0
+  },
+  {
+   "event": "E1",
+   "n_src": 4,
+   "n_sent": 24,
+   "pool": 9,
+   "summary": "The new stretch adds 11.4 kilometres of track and nine additional stations to the network. Officials placed the total project cost at 4,850 crore rupees. Daily ridership on the extended corridor is expected to reach 2.1 lakh passengers. The leader of the opposition described the cost overrun on the project as unacceptable. Three of the nine new stations still have no working lift access for passengers.",
+   "detected": 4,
+   "tp": 4,
+   "fp": 0,
+   "fn": 0
+  },
+  {
+   "event": "E3",
+   "n_src": 4,
+   "n_sent": 25,
+   "pool": 10,
+   "summary": "The technology firm announced an investment of 3,200 crore rupees in a new data centre. The company expects the project to create 1,400 direct jobs. The data centre is scheduled to be operational by 2028. A second phase of the project is planned and will depend on demand. The firm has been granted a five year exemption from state tax on the project.",
+   "detected": 4,
+   "tp": 4,
+   "fp": 0,
+   "fn": 0
+  }
+ ],
+ "P": 0.9230769230769231,
+ "R": 1.0,
+ "F": 0.9600000000000001,
+ "TP": 12,
+ "FP": 1,
+ "FN": 0,
+ "tot_s": 73,
+ "tot_p": 29,
+ "sweep": [
+  [
+   0.1,
+   5,
+   0.8,
+   0.3333333333333333,
+   0.47058823529411764
+  ],
+  [
+   0.15,
+   10,
+   0.9,
+   0.75,
+   0.8181818181818182
+  ],
+  [
+   0.2,
+   13,
+   0.9230769230769231,
+   1.0,
+   0.9600000000000001
+  ],
+  [
+   0.25,
+   14,
+   0.8571428571428571,
+   1.0,
+   0.923076923076923
+  ],
+  [
+   0.3,
+   14,
+   0.8571428571428571,
+   1.0,
+   0.923076923076923
+  ],
+  [
+   0.4,
+   27,
+   0.4444444444444444,
+   1.0,
+   0.6153846153846153
+  ]
+ ],
+ "lead": [
+  0.4442897429014843,
+  0.23843486995050747,
+  0.344803347732807,
+  0.5174101261057782,
+  0.7613519091847265
+ ],
+ "sys": [
+  0.521019135623598,
+  0.30380818326488956,
+  0.4090601757944557,
+  0.7314808344010162,
+  0.9594195632798574
+ ],
+ "outputs": [
+  {
+   "event": "E2",
+   "n_src": 4,
+   "n_sent": 24,
+   "pool": 10,
+   "summary_sents": [
+    "State XI defeated Northern XI by six wickets in the final on Sunday evening.",
+    "The win gives State XI their first title in twelve years.",
+    "The final was played at Green Park Stadium in front of a full house.",
+    "Sethi indicated after the match that he is considering retirement from the format.",
+    "Rain delayed the start of play by forty minutes on the morning of the final."
+   ],
+   "summary": "State XI defeated Northern XI by six wickets in the final on Sunday evening. The win gives State XI their first title in twelve years. The final was played at Green Park Stadium in front of a full house. Sethi indicated after the match that he is considering retirement from the format. Rain delayed the start of play by forty minutes on the morning of the final.",
+   "multi_source": true,
+   "keywords": [
+    "xi",
+    "northern",
+    "wickets",
+    "sethi",
+    "final"
+   ],
+   "exclusive": {
+    "Nagar Times": [
+     "A crowd of roughly 28,000 spectators attended the match."
+    ],
+    "Daily Chronicle": [
+     "Prize money for the competition was doubled by the board this season."
+    ],
+    "Metro Mirror": [
+     "The victory ends a twelve year wait for silverware at the state association.",
+     "Sethi indicated after the match that he is considering retirement from the format."
+    ],
+    "Civic Herald": [
+     "Rain delayed the start of play by forty minutes on the morning of the final."
+    ]
+   }
+  },
+  {
+   "event": "E1",
+   "n_src": 4,
+   "n_sent": 24,
+   "pool": 9,
+   "summary_sents": [
+    "The new stretch adds 11.4 kilometres of track and nine additional stations to the network.",
+    "Officials placed the total project cost at 4,850 crore rupees.",
+    "Daily ridership on the extended corridor is expected to reach 2.1 lakh passengers.",
+    "The leader of the opposition described the cost overrun on the project as unacceptable.",
+    "Three of the nine new stations still have no working lift access for passengers."
+   ],
+   "summary": "The new stretch adds 11.4 kilometres of track and nine additional stations to the network. Officials placed the total project cost at 4,850 crore rupees. Daily ridership on the extended corridor is expected to reach 2.1 lakh passengers. The leader of the opposition described the cost overrun on the project as unacceptable. Three of the nine new stations still have no working lift access for passengers.",
+   "multi_source": true,
+   "keywords": [
+    "transport",
+    "line",
+    "extension",
+    "passengers",
+    "corridor"
+   ],
+   "exclusive": {
+    "Nagar Times": [
+     "Fares on the new stretch have been frozen for the first three months of operation."
+    ],
+    "Daily Chronicle": [
+     "Around 240 families were relocated from the alignment during construction of the corridor."
+    ],
+    "Metro Mirror": [
+     "The leader of the opposition described the cost overrun on the project as unacceptable."
+    ],
+    "Civic Herald": [
+     "Three of the nine new stations still have no working lift access for passengers."
+    ]
+   }
+  },
+  {
+   "event": "E3",
+   "n_src": 4,
+   "n_sent": 25,
+   "pool": 10,
+   "summary_sents": [
+    "The technology firm announced an investment of 3,200 crore rupees in a new data centre.",
+    "The company expects the project to create 1,400 direct jobs.",
+    "The data centre is scheduled to be operational by 2028.",
+    "A second phase of the project is planned and will depend on demand.",
+    "The firm has been granted a five year exemption from state tax on the project."
+   ],
+   "summary": "The technology firm announced an investment of 3,200 crore rupees in a new data centre. The company expects the project to create 1,400 direct jobs. The data centre is scheduled to be operational by 2028. A second phase of the project is planned and will depend on demand. The firm has been granted a five year exemption from state tax on the project.",
+   "multi_source": true,
+   "keywords": [
+    "centre",
+    "data",
+    "facility",
+    "site",
+    "firm"
+   ],
+   "exclusive": {
+    "Nagar Times": [
+     "The land parcel acquired for the facility measures 62 acres."
+    ],
+    "Daily Chronicle": [
+     "The local civic body has raised concerns about the water consumption of the facility."
+    ],
+    "Metro Mirror": [
+     "A second phase of the project is planned and will depend on demand."
+    ],
+    "Civic Herald": [
+     "The firm has been granted a five year exemption from state tax on the project."
+    ]
+   }
+  }
+ ]
+}
