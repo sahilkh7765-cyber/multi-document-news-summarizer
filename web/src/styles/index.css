@@ -19,14 +19,17 @@
   --alert-wash: #fbe9e7;
   --ok: #1e6b3a;
   --ok-wash: #e6f2ea;
-  --src-0: #2459c7;
-  --src-1: #c2410c;
-  --src-2: #18794e;
-  --src-3: #7c3aed;
-  --src-4: #0f7490;
-  --src-5: #be185d;
-  --src-6: #6b6a00;
-  --src-7: #8a5a2b;
+  --src-0: #2a78d6;
+  --src-1: #eb6834;
+  --src-2: #1baf7a;
+  --src-3: #eda100;
+  --src-4: #e87ba4;
+  --src-5: #008300;
+  --src-6: #6250d6;
+  --src-7: #e34948;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
   color-scheme: light;
 }
 
@@ -44,14 +47,17 @@
     --alert-wash: #3d2526;
     --ok: #7fd49a;
     --ok-wash: #1f3529;
-    --src-0: #7ea6ff;
-    --src-1: #ff9467;
-    --src-2: #5fd39a;
-    --src-3: #b99bff;
-    --src-4: #45c4e0;
-    --src-5: #ff7ab6;
-    --src-6: #d1cf4a;
-    --src-7: #d9a66e;
+    --src-0: #3987e5;
+    --src-1: #d95926;
+    --src-2: #199e70;
+    --src-3: #c98500;
+    --src-4: #d55181;
+    --src-5: #008300;
+    --src-6: #9085e9;
+    --src-7: #e66767;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
     color-scheme: dark;
   }
 }
@@ -69,14 +75,17 @@
   --alert-wash: #3d2526;
   --ok: #7fd49a;
   --ok-wash: #1f3529;
-  --src-0: #7ea6ff;
-  --src-1: #ff9467;
-  --src-2: #5fd39a;
-  --src-3: #b99bff;
-  --src-4: #45c4e0;
-  --src-5: #ff7ab6;
-  --src-6: #d1cf4a;
-  --src-7: #d9a66e;
+  --src-0: #3987e5;
+  --src-1: #d95926;
+  --src-2: #199e70;
+  --src-3: #c98500;
+  --src-4: #d55181;
+  --src-5: #008300;
+  --src-6: #9085e9;
+  --src-7: #e66767;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
   color-scheme: dark;
 }
 

@@ -51,24 +51,30 @@ Tokens live in `src/styles/index.css` as CSS variables, and Tailwind reads them.
 | `--alert` | `#B3261E` | `#FF9B8F` | Errors |
 | `--ok` | `#1E6B3A` | `#7FD49A` | Success messages |
 
-**Source colours** (`--src-0` … `--src-7`) are pencil and highlighter colours. They were picked to be
-distinguishable from one another and to reach at least 3:1 against both surfaces for the margin bars
-(non-text graphics). Text is always `--ink`, never the source colour.
+**Source colours** (`--src-0` … `--src-7`) are a categorical palette checked with the dataviz skill's
+validator (`validate_palette.js`) on both surfaces in both modes:
+- every hard gate passes: worst adjacent CVD ΔE 9.1 light / 8.4 dark, worst normal-vision ΔE 19.6 / 19.3;
+- the ordering is the validated one, and its order is part of what makes it CVD-safe.
 
-| | Light | Dark |
-|---|---|---|
-| 0 blue | `#2459C7` | `#7EA6FF` |
-| 1 vermilion | `#C2410C` | `#FF9467` |
-| 2 green | `#18794E` | `#5FD39A` |
-| 3 purple | `#7C3AED` | `#B99BFF` |
-| 4 teal | `#0F7490` | `#45C4E0` |
-| 5 magenta | `#BE185D` | `#FF7AB6` |
-| 6 olive | `#6B6A00` | `#D1CF4A` |
-| 7 brown | `#8A5A2B` | `#D9A66E` |
+My first hand-picked palette failed (olive vs brown ΔE 8.1 with normal vision, and teal and brown below
+the chroma floor), so it was replaced. A few light-mode slots are below 3:1 on the surfaces. The relief
+rule applies: an outlet colour never appears without the outlet's name next to it. Text is always
+`--ink`, never the source colour.
+
+| Slot | Hue | Light | Dark |
+|---|---|---|---|
+| 0 | blue | `#2a78d6` | `#3987e5` |
+| 1 | orange | `#eb6834` | `#d95926` |
+| 2 | aqua | `#1baf7a` | `#199e70` |
+| 3 | yellow | `#eda100` | `#c98500` |
+| 4 | magenta | `#e87ba4` | `#d55181` |
+| 5 | green | `#008300` | `#008300` |
+| 6 | violet | `#6250d6` | `#9085e9` |
+| 7 | red | `#e34948` | `#e66767` |
 
 Each outlet's colour is fixed by the order in which it first appears in the workspace, so it stays the
-same on every tab. A ninth or later outlet reuses the colours with a dashed margin bar, so it is still
-told apart by name and pattern.
+same on every tab. No new hues are generated. A ninth or later outlet reuses the colours with a dashed margin bar, so it is
+still told apart by name and pattern.
 
 ## Type
 
@@ -128,12 +134,16 @@ The base unit is 4px; Tailwind's default steps (4, 8, 12, 16, 24, 32, 48) are us
 
 ## Charts
 
-- **Threshold sweep:** hand-drawn SVG line chart with precision, recall and F1 as three lines in
-  `--ink`, `--pencil` and `--ink-muted`. The lines use different dash patterns and are labelled directly
-  at their right end, with no legend box.
-- The x-axis is τ_uniq (0.10–0.40) and the y-axis 0–1, with light rule gridlines at 0.5 and 1.
-- The current τ_uniq is a vertical pencil line labelled with its value.
-- Every chart has a table equivalent directly under it.
+- **Threshold sweep:** a hand-written SVG line chart, one y-axis (0–1) with τ_uniq (0.10–0.40) on x.
+  - Precision, recall and F1 use the first three categorical slots (`--series-1..3`), which validate
+    all-pairs in both modes. They also differ by marker shape (circle, square, diamond), so colour is
+    never the only signal.
+  - There is a legend above the plot, and each line is labelled directly at its right end.
+  - Lines are 2px with 8px markers; gridlines and axes use `--rule`.
+  - The current τ_uniq is a dashed vertical line in `--ink-muted`.
+  - Hovering, or focusing the plot and using the arrow keys, shows a crosshair and a tooltip with all
+    three values at that threshold.
+  - The same numbers are always in a table directly under the chart.
 - **Coverage matrix:** sources as rows and summary sentences S1…Sk as columns. A filled pencil square
   plus a ✓ glyph means "reports this"; an empty outlined square plus "—" means it doesn't. On phones it
   turns into one block per summary sentence listing the outlets that report it.
