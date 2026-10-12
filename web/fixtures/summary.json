@@ -1,0 +1,21 @@
+{
+ "env": {
+  "python": "3.12.10",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "sklearn": "1.9.1",
+  "unidata": "15.0.0"
+ },
+ "capstone_reproduces_metrics": true,
+ "min_gaps": {
+  "cluster_threshold": 0.0023970143580246406,
+  "merge_order": 0.0005764078324537181,
+  "keyword_order": 0.0001005334628178256,
+  "tau_dup": 0.0011299130463825469,
+  "consensus_rank": 0.0003205093953079774,
+  "tau_uniq": 8.782345333094299e-05,
+  "coverage": 0.001631496523698317,
+  "article_pick": 0.00010865798019053102
+ },
+ "n_runs": 48
+}

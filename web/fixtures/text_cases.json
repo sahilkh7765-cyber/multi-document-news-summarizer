@@ -1,0 +1,1266 @@
+{
+ "split": [
+  {
+   "text": "The minister spoke on Tuesday. The bridge opened later that evening to traffic.",
+   "out": [
+    "The minister spoke on Tuesday.",
+    "The bridge opened later that evening to traffic."
+   ]
+  },
+  {
+   "text": "Dr. Rao met Mr. Singh at St. Mary's hospital. They discussed the U.S. trade deal at length today.",
+   "out": [
+    "Dr. Rao met Mr. Singh at St. Mary's hospital.",
+    "They discussed the U.S. trade deal at length today."
+   ]
+  },
+  {
+   "text": "MR. SMITH and DR. JONES arrived early today. vs. the others who arrived late at night yesterday.",
+   "out": [
+    "MR. SMITH and DR. JONES arrived early today. vs. the others who arrived late at night yesterday."
+   ]
+  },
+  {
+   "text": "“We will win this,” she said firmly to the crowd. ‘Not today,’ he replied quickly to everyone there.",
+   "out": [
+    "“We will win this,” she said firmly to the crowd.",
+    "‘Not today,’ he replied quickly to everyone there."
+   ]
+  },
+  {
+   "text": "He asked, \"Is it done?\" The answer came back slowly from the far room. (This was expected by everyone involved.)",
+   "out": [
+    "He asked, \"Is it done?\"",
+    "The answer came back slowly from the far room.",
+    "(This was expected by everyone involved.)"
+   ]
+  },
+  {
+   "text": "Costs rose 3.5 per cent this year alone. 2024 was a record year for the whole sector overall.",
+   "out": [
+    "Costs rose 3.5 per cent this year alone.",
+    "2024 was a record year for the whole sector overall."
+   ]
+  },
+  {
+   "text": "Short one. This sentence has enough words to survive the filter easily.",
+   "out": [
+    "This sentence has enough words to survive the filter easily."
+   ]
+  },
+  {
+   "text": "Line one has five words here\nand continues on the next line. Then\r\nanother sentence follows right after this.",
+   "out": [
+    "Line one has five words here and continues on the next line.",
+    "Then another sentence follows right after this."
+   ]
+  },
+  {
+   "text": "Tabs\tand non breaking spaces appear in this sentence today. Next sentence starts here now ok.",
+   "out": [
+    "Tabs and non breaking spaces appear in this sentence today.",
+    "Next sentence starts here now ok."
+   ]
+  },
+  {
+   "text": "The company, i.e. the parent firm, said e.g. costs would fall soon. Approx. ten people left early today.",
+   "out": [
+    "The company, i.e. the parent firm, said e.g. costs would fall soon.",
+    "Approx. ten people left early today."
+   ]
+  },
+  {
+   "text": "A literal <DOT> marker sits inside this sentence for testing. Another sentence follows after that one here.",
+   "out": [
+    "A literal . marker sits inside this sentence for testing.",
+    "Another sentence follows after that one here."
+   ]
+  },
+  {
+   "text": "Prices hit Rs. 500 and Nos. 4 and 5 were sold out quickly today. Gen. Patel and Col. Das were present at the event.",
+   "out": [
+    "Prices hit Rs. 500 and Nos. 4 and 5 were sold out quickly today.",
+    "Gen. Patel and Col. Das were present at the event."
+   ]
+  },
+  {
+   "text": "Ends with exclamation! Then a question follows here for sure? and lowercase start continues the same sentence here.",
+   "out": [
+    "Then a question follows here for sure? and lowercase start continues the same sentence here."
+   ]
+  },
+  {
+   "text": "Unicode café résumé naïve words are all fine here today. Étienne said the naïve plan failed badly.",
+   "out": [
+    "Unicode café résumé naïve words are all fine here today. Étienne said the naïve plan failed badly."
+   ]
+  },
+  {
+   "text": "Αθήνα και ΘΕΣΣΑΛΟΝΙΚΗ είναι πόλεις μεγάλες. Next sentence is plain English with words.",
+   "out": [
+    "Αθήνα και ΘΕΣΣΑΛΟΝΙΚΗ είναι πόλεις μεγάλες.",
+    "Next sentence is plain English with words."
+   ]
+  },
+  {
+   "text": "Kelvin K test: CoK. ignored? The Ko. case is odd. Fine sentence here with many words in it.",
+   "out": [
+    "Kelvin K test: CoK. ignored?",
+    "The Ko. case is odd.",
+    "Fine sentence here with many words in it."
+   ]
+  },
+  {
+   "text": "Ellipsis here... And then the next sentence begins right here today. [Bracketed start] works too in this case.",
+   "out": [
+    "And then the next sentence begins right here today.",
+    "[Bracketed start] works too in this case."
+   ]
+  },
+  {
+   "text": "",
+   "out": []
+  },
+  {
+   "text": "   ",
+   "out": []
+  },
+  {
+   "text": "one two three four",
+   "out": []
+  },
+  {
+   "text": "﻿BOM at start of this sentence with words. Second\u001cfile separator\u001d sentence goes here now.",
+   "out": [
+    "﻿BOM at start of this sentence with words.",
+    "Second file separator sentence goes here now."
+   ]
+  },
+  {
+   "text": "No.5 is not split. No. 5 is the house number on the street here. Inc. Ltd. Co. Corp. Govt. names.",
+   "out": [
+    "No.5 is not split.",
+    "No. 5 is the house number on the street here.",
+    "Inc. Ltd. Co. Corp. Govt. names."
+   ]
+  },
+  {
+   "text": "İnc. and ı.e. and INC. are abbreviations in Python's re.I here. Next sentence comes after them now.",
+   "out": [
+    "İnc. and ı.e. and INC. are abbreviations in Python's re.I here.",
+    "Next sentence comes after them now."
+   ]
+  },
+  {
+   "text": "Mixed: ١٢٣ Arabic digits and २ Devanagari digits here. Superscript x² and ⅕ fraction in text now.",
+   "out": [
+    "Mixed: ١٢٣ Arabic digits and २ Devanagari digits here.",
+    "Superscript x² and ⅕ fraction in text now."
+   ]
+  }
+ ],
+ "header": [
+  {
+   "text": "Source: The Hindu\nEvent: E9\nTitle: Something\n\nBody text here.",
+   "meta": {
+    "source": "The Hindu",
+    "event": "E9",
+    "title": "Something"
+   },
+   "body": "Body text here."
+  },
+  {
+   "text": "\n\n  source :  Lower Case  \nTITLE:Caps\nBody",
+   "meta": {
+    "source": "Lower Case",
+    "title": "Caps"
+   },
+   "body": "Body"
+  },
+  {
+   "text": "Title: Only title\r\nBody line one\r\nBody line two",
+   "meta": {
+    "title": "Only title"
+   },
+   "body": "Body line one\nBody line two"
+  },
+  {
+   "text": "Body first\nSource: not a header",
+   "meta": {},
+   "body": "Body first\nSource: not a header"
+  },
+  {
+   "text": "Source:\nBody",
+   "meta": {},
+   "body": "Source:\nBody"
+  },
+  {
+   "text": "Event: E1\n\n\nEvent: E2\nBody",
+   "meta": {
+    "event": "E2"
+   },
+   "body": "Body"
+  },
+  {
+   "text": "Source: A\u000bB\nBody",
+   "meta": {
+    "source": "A"
+   },
+   "body": "B\nBody"
+  },
+  {
+   "text": "Source: X Body after LS",
+   "meta": {
+    "source": "X"
+   },
+   "body": "Body after LS"
+  },
+  {
+   "text": "ſource: long s\nBody",
+   "meta": {
+    "ſource": "long s"
+   },
+   "body": "Body"
+  },
+  {
+   "text": "",
+   "meta": {},
+   "body": ""
+  },
+  {
+   "text": "Source: Trailing\n",
+   "meta": {
+    "source": "Trailing"
+   },
+   "body": ""
+  },
+  {
+   "text": "Source: Tabs\tinside\n\tBody",
+   "meta": {
+    "source": "Tabs\tinside"
+   },
+   "body": "\tBody"
+  },
+  {
+   "text": "TİTLE: dotted capital I\nBody",
+   "meta": {
+    "ti̇tle": "dotted capital I"
+   },
+   "body": "Body"
+  },
+  {
+   "text": "ЅOURCE: Cyrillic DZE is not S\nBody",
+   "meta": {},
+   "body": "ЅOURCE: Cyrillic DZE is not S\nBody"
+  }
+ ],
+ "toks": [
+  {
+   "text": "The minister spoke on Tuesday. The bridge opened later that evening to traffic.",
+   "out": [
+    "the",
+    "minister",
+    "spoke",
+    "on",
+    "tuesday",
+    "the",
+    "bridge",
+    "opened",
+    "later",
+    "that",
+    "evening",
+    "to",
+    "traffic"
+   ]
+  },
+  {
+   "text": "Dr. Rao met Mr. Singh at St. Mary's hospital. They discussed the U.S. trade deal at length today.",
+   "out": [
+    "dr",
+    "rao",
+    "met",
+    "mr",
+    "singh",
+    "at",
+    "st",
+    "mary",
+    "s",
+    "hospital",
+    "they",
+    "discussed",
+    "the",
+    "u",
+    "s",
+    "trade",
+    "deal",
+    "at",
+    "length",
+    "today"
+   ]
+  },
+  {
+   "text": "MR. SMITH and DR. JONES arrived early today. vs. the others who arrived late at night yesterday.",
+   "out": [
+    "mr",
+    "smith",
+    "and",
+    "dr",
+    "jones",
+    "arrived",
+    "early",
+    "today",
+    "vs",
+    "the",
+    "others",
+    "who",
+    "arrived",
+    "late",
+    "at",
+    "night",
+    "yesterday"
+   ]
+  },
+  {
+   "text": "“We will win this,” she said firmly to the crowd. ‘Not today,’ he replied quickly to everyone there.",
+   "out": [
+    "we",
+    "will",
+    "win",
+    "this",
+    "she",
+    "said",
+    "firmly",
+    "to",
+    "the",
+    "crowd",
+    "not",
+    "today",
+    "he",
+    "replied",
+    "quickly",
+    "to",
+    "everyone",
+    "there"
+   ]
+  },
+  {
+   "text": "He asked, \"Is it done?\" The answer came back slowly from the far room. (This was expected by everyone involved.)",
+   "out": [
+    "he",
+    "asked",
+    "is",
+    "it",
+    "done",
+    "the",
+    "answer",
+    "came",
+    "back",
+    "slowly",
+    "from",
+    "the",
+    "far",
+    "room",
+    "this",
+    "was",
+    "expected",
+    "by",
+    "everyone",
+    "involved"
+   ]
+  },
+  {
+   "text": "Costs rose 3.5 per cent this year alone. 2024 was a record year for the whole sector overall.",
+   "out": [
+    "costs",
+    "rose",
+    "3",
+    "5",
+    "per",
+    "cent",
+    "this",
+    "year",
+    "alone",
+    "2024",
+    "was",
+    "a",
+    "record",
+    "year",
+    "for",
+    "the",
+    "whole",
+    "sector",
+    "overall"
+   ]
+  },
+  {
+   "text": "Short one. This sentence has enough words to survive the filter easily.",
+   "out": [
+    "short",
+    "one",
+    "this",
+    "sentence",
+    "has",
+    "enough",
+    "words",
+    "to",
+    "survive",
+    "the",
+    "filter",
+    "easily"
+   ]
+  },
+  {
+   "text": "Line one has five words here\nand continues on the next line. Then\r\nanother sentence follows right after this.",
+   "out": [
+    "line",
+    "one",
+    "has",
+    "five",
+    "words",
+    "here",
+    "and",
+    "continues",
+    "on",
+    "the",
+    "next",
+    "line",
+    "then",
+    "another",
+    "sentence",
+    "follows",
+    "right",
+    "after",
+    "this"
+   ]
+  },
+  {
+   "text": "Tabs\tand non breaking spaces appear in this sentence today. Next sentence starts here now ok.",
+   "out": [
+    "tabs",
+    "and",
+    "non",
+    "breaking",
+    "spaces",
+    "appear",
+    "in",
+    "this",
+    "sentence",
+    "today",
+    "next",
+    "sentence",
+    "starts",
+    "here",
+    "now",
+    "ok"
+   ]
+  },
+  {
+   "text": "The company, i.e. the parent firm, said e.g. costs would fall soon. Approx. ten people left early today.",
+   "out": [
+    "the",
+    "company",
+    "i",
+    "e",
+    "the",
+    "parent",
+    "firm",
+    "said",
+    "e",
+    "g",
+    "costs",
+    "would",
+    "fall",
+    "soon",
+    "approx",
+    "ten",
+    "people",
+    "left",
+    "early",
+    "today"
+   ]
+  },
+  {
+   "text": "A literal <DOT> marker sits inside this sentence for testing. Another sentence follows after that one here.",
+   "out": [
+    "a",
+    "literal",
+    "dot",
+    "marker",
+    "sits",
+    "inside",
+    "this",
+    "sentence",
+    "for",
+    "testing",
+    "another",
+    "sentence",
+    "follows",
+    "after",
+    "that",
+    "one",
+    "here"
+   ]
+  },
+  {
+   "text": "Prices hit Rs. 500 and Nos. 4 and 5 were sold out quickly today. Gen. Patel and Col. Das were present at the event.",
+   "out": [
+    "prices",
+    "hit",
+    "rs",
+    "500",
+    "and",
+    "nos",
+    "4",
+    "and",
+    "5",
+    "were",
+    "sold",
+    "out",
+    "quickly",
+    "today",
+    "gen",
+    "patel",
+    "and",
+    "col",
+    "das",
+    "were",
+    "present",
+    "at",
+    "the",
+    "event"
+   ]
+  },
+  {
+   "text": "Ends with exclamation! Then a question follows here for sure? and lowercase start continues the same sentence here.",
+   "out": [
+    "ends",
+    "with",
+    "exclamation",
+    "then",
+    "a",
+    "question",
+    "follows",
+    "here",
+    "for",
+    "sure",
+    "and",
+    "lowercase",
+    "start",
+    "continues",
+    "the",
+    "same",
+    "sentence",
+    "here"
+   ]
+  },
+  {
+   "text": "Unicode café résumé naïve words are all fine here today. Étienne said the naïve plan failed badly.",
+   "out": [
+    "unicode",
+    "café",
+    "résumé",
+    "naïve",
+    "words",
+    "are",
+    "all",
+    "fine",
+    "here",
+    "today",
+    "étienne",
+    "said",
+    "the",
+    "naïve",
+    "plan",
+    "failed",
+    "badly"
+   ]
+  },
+  {
+   "text": "Αθήνα και ΘΕΣΣΑΛΟΝΙΚΗ είναι πόλεις μεγάλες. Next sentence is plain English with words.",
+   "out": [
+    "αθήνα",
+    "και",
+    "θεσσαλονικη",
+    "είναι",
+    "πόλεις",
+    "μεγάλες",
+    "next",
+    "sentence",
+    "is",
+    "plain",
+    "english",
+    "with",
+    "words"
+   ]
+  },
+  {
+   "text": "Kelvin K test: CoK. ignored? The Ko. case is odd. Fine sentence here with many words in it.",
+   "out": [
+    "kelvin",
+    "k",
+    "test",
+    "cok",
+    "ignored",
+    "the",
+    "ko",
+    "case",
+    "is",
+    "odd",
+    "fine",
+    "sentence",
+    "here",
+    "with",
+    "many",
+    "words",
+    "in",
+    "it"
+   ]
+  },
+  {
+   "text": "Ellipsis here... And then the next sentence begins right here today. [Bracketed start] works too in this case.",
+   "out": [
+    "ellipsis",
+    "here",
+    "and",
+    "then",
+    "the",
+    "next",
+    "sentence",
+    "begins",
+    "right",
+    "here",
+    "today",
+    "bracketed",
+    "start",
+    "works",
+    "too",
+    "in",
+    "this",
+    "case"
+   ]
+  },
+  {
+   "text": "",
+   "out": []
+  },
+  {
+   "text": "   ",
+   "out": []
+  },
+  {
+   "text": "one two three four",
+   "out": [
+    "one",
+    "two",
+    "three",
+    "four"
+   ]
+  },
+  {
+   "text": "﻿BOM at start of this sentence with words. Second\u001cfile separator\u001d sentence goes here now.",
+   "out": [
+    "bom",
+    "at",
+    "start",
+    "of",
+    "this",
+    "sentence",
+    "with",
+    "words",
+    "second",
+    "file",
+    "separator",
+    "sentence",
+    "goes",
+    "here",
+    "now"
+   ]
+  },
+  {
+   "text": "No.5 is not split. No. 5 is the house number on the street here. Inc. Ltd. Co. Corp. Govt. names.",
+   "out": [
+    "no",
+    "5",
+    "is",
+    "not",
+    "split",
+    "no",
+    "5",
+    "is",
+    "the",
+    "house",
+    "number",
+    "on",
+    "the",
+    "street",
+    "here",
+    "inc",
+    "ltd",
+    "co",
+    "corp",
+    "govt",
+    "names"
+   ]
+  },
+  {
+   "text": "İnc. and ı.e. and INC. are abbreviations in Python's re.I here. Next sentence comes after them now.",
+   "out": [
+    "i̇nc",
+    "and",
+    "ı",
+    "e",
+    "and",
+    "inc",
+    "are",
+    "abbreviations",
+    "in",
+    "python",
+    "s",
+    "re",
+    "i",
+    "here",
+    "next",
+    "sentence",
+    "comes",
+    "after",
+    "them",
+    "now"
+   ]
+  },
+  {
+   "text": "Mixed: ١٢٣ Arabic digits and २ Devanagari digits here. Superscript x² and ⅕ fraction in text now.",
+   "out": [
+    "mixed",
+    "١٢٣",
+    "arabic",
+    "digits",
+    "and",
+    "२",
+    "devanagari",
+    "digits",
+    "here",
+    "superscript",
+    "x²",
+    "and",
+    "⅕",
+    "fraction",
+    "in",
+    "text",
+    "now"
+   ]
+  },
+  {
+   "text": "the cat sat on the mat",
+   "out": [
+    "the",
+    "cat",
+    "sat",
+    "on",
+    "the",
+    "mat"
+   ]
+  },
+  {
+   "text": "the cat sat on the mat",
+   "out": [
+    "the",
+    "cat",
+    "sat",
+    "on",
+    "the",
+    "mat"
+   ]
+  },
+  {
+   "text": "the the the the",
+   "out": [
+    "the",
+    "the",
+    "the",
+    "the"
+   ]
+  },
+  {
+   "text": "",
+   "out": []
+  },
+  {
+   "text": "something here",
+   "out": [
+    "something",
+    "here"
+   ]
+  },
+  {
+   "text": "word",
+   "out": [
+    "word"
+   ]
+  },
+  {
+   "text": "Café owners said: prices rose 3.5% in 2024!",
+   "out": [
+    "café",
+    "owners",
+    "said",
+    "prices",
+    "rose",
+    "3",
+    "5",
+    "in",
+    "2024"
+   ]
+  },
+  {
+   "text": "İstanbul ΣΟΣ test",
+   "out": [
+    "i̇stanbul",
+    "σοσ",
+    "test"
+   ]
+  },
+  {
+   "text": "State XI beat Northern XI by six wickets.",
+   "out": [
+    "state",
+    "xi",
+    "beat",
+    "northern",
+    "xi",
+    "by",
+    "six",
+    "wickets"
+   ]
+  },
+  {
+   "text": "a b c d e f g h",
+   "out": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ]
+  }
+ ],
+ "rouge": [
+  {
+   "cand": "the cat sat on the mat",
+   "ref": "the cat sat on the mat",
+   "r1": 1.0,
+   "r2": 1.0,
+   "rl": 1.0,
+   "d1": 0.8333333333333334,
+   "d2": 1.0
+  },
+  {
+   "cand": "the cat sat on the mat",
+   "ref": "a dog lay on a rug",
+   "r1": 0.16666666666666666,
+   "r2": 0.0,
+   "rl": 0.16666666666666666,
+   "d1": 0.8333333333333334,
+   "d2": 1.0
+  },
+  {
+   "cand": "the the the the",
+   "ref": "the cat",
+   "r1": 0.3333333333333333,
+   "r2": 0.0,
+   "rl": 0.3333333333333333,
+   "d1": 0.25,
+   "d2": 0.3333333333333333
+  },
+  {
+   "cand": "",
+   "ref": "something here",
+   "r1": 0.0,
+   "r2": 0.0,
+   "rl": 0.0,
+   "d1": 0.0,
+   "d2": 0.0
+  },
+  {
+   "cand": "something here",
+   "ref": "",
+   "r1": 0.0,
+   "r2": 0.0,
+   "rl": 0.0,
+   "d1": 1.0,
+   "d2": 1.0
+  },
+  {
+   "cand": "word",
+   "ref": "word",
+   "r1": 1.0,
+   "r2": 0.0,
+   "rl": 1.0,
+   "d1": 1.0,
+   "d2": 0.0
+  },
+  {
+   "cand": "Café owners said: prices rose 3.5% in 2024!",
+   "ref": "café OWNERS say prices rose 3 5 percent in 2024",
+   "r1": 0.8421052631578948,
+   "r2": 0.5882352941176471,
+   "rl": 0.8421052631578948,
+   "d1": 1.0,
+   "d2": 1.0
+  },
+  {
+   "cand": "İstanbul ΣΟΣ test",
+   "ref": "i̇stanbul σοσ test",
+   "r1": 0.5714285714285715,
+   "r2": 0.4,
+   "rl": 0.5714285714285715,
+   "d1": 1.0,
+   "d2": 1.0
+  },
+  {
+   "cand": "State XI beat Northern XI by six wickets.",
+   "ref": "State XI defeated Northern XI by six wickets in the final.",
+   "r1": 0.7368421052631579,
+   "r2": 0.588235294117647,
+   "rl": 0.7368421052631579,
+   "d1": 0.875,
+   "d2": 1.0
+  },
+  {
+   "cand": "a b c d e f g h",
+   "ref": "h g f e d c b a",
+   "r1": 1.0,
+   "r2": 0.0,
+   "rl": 0.125,
+   "d1": 1.0,
+   "d2": 1.0
+  }
+ ],
+ "unique_sources": [
+  {
+   "names": [
+    "A",
+    "B",
+    "C"
+   ],
+   "collides": false,
+   "out": [
+    "A",
+    "B",
+    "C"
+   ]
+  },
+  {
+   "names": [
+    "A",
+    "A",
+    "B",
+    "A"
+   ],
+   "collides": false,
+   "out": [
+    "A",
+    "A (2)",
+    "B",
+    "A (3)"
+   ]
+  },
+  {
+   "names": [
+    "Wire",
+    "Wire",
+    "Wire",
+    "Desk",
+    "Desk"
+   ],
+   "collides": false,
+   "out": [
+    "Wire",
+    "Wire (2)",
+    "Wire (3)",
+    "Desk",
+    "Desk (2)"
+   ]
+  },
+  {
+   "names": [
+    "A",
+    "A",
+    "A (2)"
+   ],
+   "collides": true,
+   "out": [
+    "A",
+    "A (2)",
+    "A (2)"
+   ]
+  },
+  {
+   "names": [
+    "A (2)",
+    "A",
+    "A"
+   ],
+   "collides": true,
+   "out": [
+    "A (2)",
+    "A",
+    "A (2)"
+   ]
+  }
+ ],
+ "make_article": [
+  {
+   "name": "harbour-a.txt",
+   "raw": "Source: Coastal Post\nEvent: H1\nTitle: Harbour bridge closes\n\nThe harbour bridge will close for repairs from Monday, the port authority said. Dr. Meera Iyer, the chief engineer, said the steel cables had corroded faster than expected. Repairs are expected to cost Rs. 310 crore and take about eight months. “We cannot risk another monsoon on these cables,” Iyer told reporters. Ferry services will be doubled while the bridge is shut.",
+   "out": {
+    "event": "H1",
+    "source": "Coastal Post",
+    "title": "Harbour bridge closes",
+    "sents": [
+     [
+      "The harbour bridge will close for repairs from Monday, the port authority said.",
+      null
+     ],
+     [
+      "Dr. Meera Iyer, the chief engineer, said the steel cables had corroded faster than expected.",
+      null
+     ],
+     [
+      "Repairs are expected to cost Rs. 310 crore and take about eight months.",
+      null
+     ],
+     [
+      "“We cannot risk another monsoon on these cables,” Iyer told reporters.",
+      null
+     ],
+     [
+      "Ferry services will be doubled while the bridge is shut.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "harbour-b.txt",
+   "raw": "Source: Wire Service\nEvent: H1\n\nPort officials announced that the harbour bridge closes on Monday for eight months of repairs. The corroded steel cables must be replaced, chief engineer Meera Iyer said. The repair bill is put at 310 crore rupees by the port authority. Extra ferries will run during the closure, officials said. Traders in the old market fear a drop in footfall during the closure.",
+   "out": {
+    "event": "H1",
+    "source": "Wire Service",
+    "title": "",
+    "sents": [
+     [
+      "Port officials announced that the harbour bridge closes on Monday for eight months of repairs.",
+      null
+     ],
+     [
+      "The corroded steel cables must be replaced, chief engineer Meera Iyer said.",
+      null
+     ],
+     [
+      "The repair bill is put at 310 crore rupees by the port authority.",
+      null
+     ],
+     [
+      "Extra ferries will run during the closure, officials said.",
+      null
+     ],
+     [
+      "Traders in the old market fear a drop in footfall during the closure.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "harbour-c.md",
+   "raw": "Source: Wire Service\nEvent: H1\n\nThe harbour bridge shuts on Monday so that its corroded cables can be replaced. Engineers estimate the work will take eight months to finish. Ferry frequency on the harbour route will double from Monday. A U.S. firm, Lattice Corp., won the contract for the cable work. Commuters said the closure would add an hour to their daily journeys.",
+   "out": {
+    "event": "H1",
+    "source": "Wire Service",
+    "title": "",
+    "sents": [
+     [
+      "The harbour bridge shuts on Monday so that its corroded cables can be replaced.",
+      null
+     ],
+     [
+      "Engineers estimate the work will take eight months to finish.",
+      null
+     ],
+     [
+      "Ferry frequency on the harbour route will double from Monday.",
+      null
+     ],
+     [
+      "A U.S. firm, Lattice Corp., won the contract for the cable work.",
+      null
+     ],
+     [
+      "Commuters said the closure would add an hour to their daily journeys.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "flu-a.txt",
+   "raw": "Source: Health Desk\nEvent: F1\n\nHospitals across the district reported a sharp rise in seasonal flu cases this week. Doctors at the general hospital said most patients were children under ten. The health department has asked schools to report absences daily. Free vaccination camps will open in twelve wards from Thursday.",
+   "out": {
+    "event": "F1",
+    "source": "Health Desk",
+    "title": "",
+    "sents": [
+     [
+      "Hospitals across the district reported a sharp rise in seasonal flu cases this week.",
+      null
+     ],
+     [
+      "Doctors at the general hospital said most patients were children under ten.",
+      null
+     ],
+     [
+      "The health department has asked schools to report absences daily.",
+      null
+     ],
+     [
+      "Free vaccination camps will open in twelve wards from Thursday.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "flu-b.txt",
+   "raw": "Source: City Bulletin\nEvent: F1\n\nSeasonal flu cases have risen sharply across district hospitals this week. Children under ten make up the majority of patients, doctors said. Vaccination camps offering free shots open in twelve wards on Thursday. Pharmacies reported shortages of paediatric fever syrup. Prof. Anil Rao said the peak was likely two weeks away.",
+   "out": {
+    "event": "F1",
+    "source": "City Bulletin",
+    "title": "",
+    "sents": [
+     [
+      "Seasonal flu cases have risen sharply across district hospitals this week.",
+      null
+     ],
+     [
+      "Children under ten make up the majority of patients, doctors said.",
+      null
+     ],
+     [
+      "Vaccination camps offering free shots open in twelve wards on Thursday.",
+      null
+     ],
+     [
+      "Pharmacies reported shortages of paediatric fever syrup.",
+      null
+     ],
+     [
+      "Prof. Anil Rao said the peak was likely two weeks away.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "orchestra.txt",
+   "raw": "Source: Arts Review\nEvent: O1\n\nThe youth orchestra performed Mahler's fifth symphony to a sold out auditorium on Saturday. Conductor Lina Duarte drew sustained applause after the final movement. Tickets for the autumn season go on sale next month.",
+   "out": {
+    "event": "O1",
+    "source": "Arts Review",
+    "title": "",
+    "sents": [
+     [
+      "The youth orchestra performed Mahler's fifth symphony to a sold out auditorium on Saturday.",
+      null
+     ],
+     [
+      "Conductor Lina Duarte drew sustained applause after the final movement.",
+      null
+     ],
+     [
+      "Tickets for the autumn season go on sale next month.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "alpha.txt",
+   "raw": "Volcanic ash grounded flights across northern airports overnight. Airlines cancelled dozens of departures until the plume drifts east.",
+   "out": {
+    "event": null,
+    "source": "alpha",
+    "title": "",
+    "sents": [
+     [
+      "Volcanic ash grounded flights across northern airports overnight.",
+      null
+     ],
+     [
+      "Airlines cancelled dozens of departures until the plume drifts east.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "beta.txt",
+   "raw": "Chess prodigy wins junior championship with a stunning queen sacrifice. Spectators applauded as the eleven year old shook hands with opponents.",
+   "out": {
+    "event": null,
+    "source": "beta",
+    "title": "",
+    "sents": [
+     [
+      "Chess prodigy wins junior championship with a stunning queen sacrifice.",
+      null
+     ],
+     [
+      "Spectators applauded as the eleven year old shook hands with opponents.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "gamma.txt",
+   "raw": "Bakery chain launches sourdough subscriptions delivered weekly. Customers pick loaves online and collect them every Friday morning.",
+   "out": {
+    "event": null,
+    "source": "gamma",
+    "title": "",
+    "sents": [
+     [
+      "Bakery chain launches sourdough subscriptions delivered weekly.",
+      null
+     ],
+     [
+      "Customers pick loaves online and collect them every Friday morning.",
+      null
+     ]
+    ]
+   }
+  },
+  {
+   "name": "delta.txt",
+   "raw": "Glaciers in the valley retreated faster this decade, satellite surveys show. Researchers measured meltwater runoff using drones and buoys.",
+   "out": {
+    "event": null,
+    "source": "delta",
+    "title": "",
+    "sents": [
+     [
+      "Glaciers in the valley retreated faster this decade, satellite surveys show.",
+      null
+     ],
+     [
+      "Researchers measured meltwater runoff using drones and buoys.",
+      null
+     ]
+    ]
+   }
+  }
+ ]
+}
