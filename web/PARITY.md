@@ -122,6 +122,9 @@ For these outputs the tests check what *is* determined:
 
 Untied outputs, including the first five demo keywords that `metrics.json` records, must match exactly.
 
+This is deliberate and permanent: emulating numpy's unstable SIMD sort is not worth it, and the stable
+rule makes the JS app give the same result on every machine, which the Python app does not.
+
 The consensus summary uses Python's `sorted()`, which is stable, so it is reproduced exactly. In the merge
 tree, the `unrelated` corpus has only tied merge distances and its labels still match.
 

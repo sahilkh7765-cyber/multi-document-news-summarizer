@@ -1,0 +1,152 @@
+/* NLP PROJECT - MULTI-DOCUMENT NEWS SUMMARIZATION WITH CROSS-SOURCE COVERAGE COMPARISON */
+/* SAHIL JABIR KHAN 24AD1199 */
+/* Design tokens: see DESIGN.md. Colours are CSS variables so light/dark switch in one place. */
+
+@import 'tailwindcss';
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/public-sans';
+
+:root {
+  --desk: #d9dfe3;
+  --paper: #fcfcfa;
+  --ink: #1c2532;
+  --ink-muted: #4f5a68;
+  --rule: #c3cbd3;
+  --pencil: #1d55c9;
+  --pencil-ink: #ffffff;
+  --pencil-wash: #e4ecfb;
+  --alert: #b3261e;
+  --alert-wash: #fbe9e7;
+  --ok: #1e6b3a;
+  --ok-wash: #e6f2ea;
+  --src-0: #2459c7;
+  --src-1: #c2410c;
+  --src-2: #18794e;
+  --src-3: #7c3aed;
+  --src-4: #0f7490;
+  --src-5: #be185d;
+  --src-6: #6b6a00;
+  --src-7: #8a5a2b;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --desk: #1a2027;
+    --paper: #222a33;
+    --ink: #e7ebf0;
+    --ink-muted: #a7b1bd;
+    --rule: #3a4552;
+    --pencil: #8db1ff;
+    --pencil-ink: #0f1a2e;
+    --pencil-wash: #2a3a57;
+    --alert: #ff9b8f;
+    --alert-wash: #3d2526;
+    --ok: #7fd49a;
+    --ok-wash: #1f3529;
+    --src-0: #7ea6ff;
+    --src-1: #ff9467;
+    --src-2: #5fd39a;
+    --src-3: #b99bff;
+    --src-4: #45c4e0;
+    --src-5: #ff7ab6;
+    --src-6: #d1cf4a;
+    --src-7: #d9a66e;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --desk: #1a2027;
+  --paper: #222a33;
+  --ink: #e7ebf0;
+  --ink-muted: #a7b1bd;
+  --rule: #3a4552;
+  --pencil: #8db1ff;
+  --pencil-ink: #0f1a2e;
+  --pencil-wash: #2a3a57;
+  --alert: #ff9b8f;
+  --alert-wash: #3d2526;
+  --ok: #7fd49a;
+  --ok-wash: #1f3529;
+  --src-0: #7ea6ff;
+  --src-1: #ff9467;
+  --src-2: #5fd39a;
+  --src-3: #b99bff;
+  --src-4: #45c4e0;
+  --src-5: #ff7ab6;
+  --src-6: #d1cf4a;
+  --src-7: #d9a66e;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-desk: var(--desk);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-rule: var(--rule);
+  --color-pencil: var(--pencil);
+  --color-pencil-ink: var(--pencil-ink);
+  --color-pencil-wash: var(--pencil-wash);
+  --color-alert: var(--alert);
+  --color-alert-wash: var(--alert-wash);
+  --color-ok: var(--ok);
+  --color-ok-wash: var(--ok-wash);
+  --font-serif: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  --text-reading: 1.125rem;
+  --text-reading--line-height: 1.875rem;
+  --text-lede: 1.5rem;
+  --text-lede--line-height: 2.25rem;
+  --radius-control: 4px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--desk);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--pencil);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--pencil-wash);
+    color: var(--ink);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* the one orchestrated moment: lede sentences arrive in sequence after a run */
+@keyframes lede-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.lede-line {
+  animation: lede-in 360ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
