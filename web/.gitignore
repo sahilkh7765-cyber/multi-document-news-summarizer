@@ -4,3 +4,4 @@ test-results
 playwright-report
 *.local
 e2e/screenshots
+*.tsbuildinfo

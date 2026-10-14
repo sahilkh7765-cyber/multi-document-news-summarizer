@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -p tsconfig.json && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "typecheck": "tsc -b --noEmit",
+    "typecheck": "tsc -p tsconfig.json",
     "server": "node server/index.ts",
     "start": "node server/index.ts",
     "e2e": "playwright test",

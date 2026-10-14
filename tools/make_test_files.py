@@ -105,7 +105,8 @@ def write_docx(path, paragraphs):
     }
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
         for name, data in files.items():
-            z.writestr(name, data)
+            # fixed timestamp so the file is byte-identical on every run
+            z.writestr(zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0)), data, zipfile.ZIP_DEFLATED)
 
 
 def main():

@@ -153,7 +153,10 @@ app.py's patterns (`title`, `Inc`, `i.e`) is spelled out as `[iİı]`, and fixtu
 ## Outside the parity scope: reading files and pages
 
 The input parsers are different software from app.py's. pypdf, python-docx and BeautifulSoup are not
-installed in this environment, so app.py's own upload and URL paths could not be run for comparison.
+in the main Python environment. app.py's upload path was therefore run in a separate virtual environment
+(streamlit 1.65.0, sklearn 1.9.1) with the test files from `web/e2e/assets`. app.py and the JS app read
+the same number of sentences from each: `harbour-post.pdf` 5, `evening-herald.docx` 4, `city-wire.txt`
+5. That compares sentence counts only, not the exact text. app.py's URL path was not compared.
 Once the text exists, everything downstream (`parse_header`, sentence splitting, the pipeline) is
 covered by the tests above.
 
