@@ -10,7 +10,7 @@ import { useWorkspace } from '@/state/workspace';
 import { Results } from './Results';
 
 export function Proof() {
-  const { state } = useWorkspace();
+  const { state, storage } = useWorkspace();
   const n = state.articles.length;
   const finishedAt = state.last?.finishedAt;
 
@@ -20,6 +20,15 @@ export function Proof() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.getElementById('proof')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   }, [finishedAt]);
+
+  if (storage.kind === 'loading') {
+    return (
+      <div className="flex items-center gap-3 py-16 text-ink-muted" role="status">
+        <Loader2 aria-hidden className="size-5 animate-spin text-pencil" />
+        Opening your saved desk…
+      </div>
+    );
+  }
 
   if (state.last) return <Results />;
 

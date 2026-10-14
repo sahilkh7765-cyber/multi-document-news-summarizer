@@ -9,7 +9,7 @@ import { useId } from 'react';
 import { Label, Textarea } from '@/components/ui/field';
 import { cn } from '@/lib/utils';
 import { fmt4, prfScores } from '@/nlp/metrics';
-import { distinct, rougeL, rougeN } from '@/nlp/rouge';
+import { evaluateStory, type SystemScores } from '@/nlp/evaluate';
 import type { ClusterResult } from '@/nlp/types';
 import { SweepChart, type SweepPoint } from './SweepChart';
 
@@ -20,27 +20,29 @@ interface Props {
   onReferenceChange: (text: string) => void;
 }
 
-type Metric = 'ROUGE-1' | 'ROUGE-2' | 'ROUGE-L' | 'Distinct-1' | 'Distinct-2';
+export const METRIC_COLUMNS = [
+  ['ROUGE-1', 'rouge1'],
+  ['ROUGE-2', 'rouge2'],
+  ['ROUGE-L', 'rougeL'],
+  ['Distinct-1', 'distinct1'],
+  ['Distinct-2', 'distinct2'],
+] as const satisfies readonly (readonly [string, keyof SystemScores])[];
+
+type Metric = (typeof METRIC_COLUMNS)[number][0];
 
 function scoreRows(cluster: ClusterResult, ref: string) {
-  const withRef = ref.trim() !== '';
-  const systems: [string, string][] = [
-    ['LEAD-2 baseline', cluster.lead],
-    ['This pipeline', cluster.summary.join(' ')],
-  ];
-  const metrics: Metric[] = withRef
-    ? ['ROUGE-1', 'ROUGE-2', 'ROUGE-L', 'Distinct-1', 'Distinct-2']
-    : ['Distinct-1', 'Distinct-2'];
-  const rows = systems.map(([name, cand]) => {
-    const v: Record<Metric, number> = {
-      'ROUGE-1': withRef ? rougeN(cand, ref, 1) : 0,
-      'ROUGE-2': withRef ? rougeN(cand, ref, 2) : 0,
-      'ROUGE-L': withRef ? rougeL(cand, ref) : 0,
-      'Distinct-1': distinct(cand, 1),
-      'Distinct-2': distinct(cand, 2),
-    };
-    return { name, v };
-  });
+  const ev = evaluateStory(cluster, ref);
+  const cols = METRIC_COLUMNS.filter(([, key]) => ev.hasReference || key.startsWith('distinct'));
+  const metrics: Metric[] = cols.map(([label]) => label);
+  const rows = (
+    [
+      ['LEAD-2 baseline', ev.lead],
+      ['This pipeline', ev.pipeline],
+    ] as const
+  ).map(([name, s]) => ({
+    name,
+    v: Object.fromEntries(cols.map(([label, key]) => [label, s[key] ?? 0])) as Record<Metric, number>,
+  }));
   return { metrics, rows };
 }
 

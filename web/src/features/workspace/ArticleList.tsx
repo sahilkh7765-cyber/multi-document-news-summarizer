@@ -19,7 +19,11 @@ const ORIGIN_LABEL: Record<WorkspaceArticle['origin'], string> = {
 };
 
 export function ArticleList() {
-  const { state, dispatch, displayName, colorOf } = useWorkspace();
+  const { state, storage, dispatch, displayName, colorOf } = useWorkspace();
+
+  if (storage.kind === 'loading') {
+    return <p className="px-1 py-6 text-sm text-ink-muted">Opening your saved desk…</p>;
+  }
 
   if (state.articles.length === 0) {
     return (

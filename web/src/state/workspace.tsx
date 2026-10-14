@@ -4,10 +4,11 @@
 // Workspace state: the articles on the desk, the settings, the last run and the reference summaries.
 // A plain reducer behind a context; the pipeline itself runs in the worker (src/worker).
 
-import { createContext, useCallback, useContext, useMemo, useReducer, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from 'react';
 import { DEMO_CORPUS, DEMO_REFERENCES } from '@/nlp/demo';
 import { uniqueSources } from '@/nlp/sentences';
 import type { Article, Params, PipelineResult } from '@/nlp/types';
+import { loadWorkspace, PERSIST_VERSION, saveWorkspace, type PersistedRun } from '@/store/persist';
 import { runInWorker } from '@/worker/client';
 
 export type Origin = 'demo' | 'paste' | 'file' | 'url';
@@ -53,7 +54,7 @@ type Action =
   | { type: 'runDone'; result: PipelineResult; params: Params; revision: number; ms: number }
   | { type: 'runFail'; error: string }
   | { type: 'setRef'; name: string; text: string }
-  | { type: 'hydrate'; state: Pick<WorkspaceState, 'articles' | 'params' | 'refs'> };
+  | { type: 'hydrate'; state: Pick<WorkspaceState, 'articles' | 'params' | 'refs'> & { last: PersistedRun | null } };
 
 let idCounter = 0;
 export function newId(): string {
@@ -112,16 +113,34 @@ function reducer(state: WorkspaceState, action: Action): WorkspaceState {
       return { ...state, running: false, runError: action.error };
     case 'setRef':
       return { ...state, refs: { ...state.refs, [action.name]: action.text } };
-    case 'hydrate':
-      return { ...state, ...action.state, revision: state.revision + 1 };
+    case 'hydrate': {
+      const revision = state.revision + 1;
+      const p = action.state.last;
+      return {
+        ...state,
+        articles: action.state.articles,
+        params: action.state.params,
+        refs: action.state.refs,
+        revision,
+        // a run saved as stale keeps its "articles changed" hint
+        last: p ? { result: p.result, params: p.params, ms: p.ms, finishedAt: p.finishedAt, revision: p.stale ? -1 : revision } : null,
+      };
+    }
   }
 }
 
 export const sameParams = (a: Params, b: Params): boolean =>
   a.k === b.k && a.delta === b.delta && a.tau_dup === b.tau_dup && a.tau_uniq === b.tau_uniq;
 
+export type StorageStatus =
+  | { kind: 'loading' }
+  | { kind: 'saved'; at: number; discarded: boolean }
+  | { kind: 'unavailable' }
+  | { kind: 'error'; message: string };
+
 interface WorkspaceApi {
   state: WorkspaceState;
+  storage: StorageStatus;
   dispatch: (a: Action) => void;
   /** source names as the pipeline will see them (unique_sources applied to a copy), by article id */
   displayName: Map<string, string>;
@@ -132,8 +151,70 @@ interface WorkspaceApi {
 
 const Ctx = createContext<WorkspaceApi | null>(null);
 
-export function WorkspaceProvider({ children, initial }: { children: ReactNode; initial?: WorkspaceState }) {
+export function WorkspaceProvider({
+  children,
+  initial,
+  persist = true,
+}: {
+  children: ReactNode;
+  initial?: WorkspaceState;
+  persist?: boolean;
+}) {
   const [state, dispatch] = useReducer(reducer, initial ?? initialState);
+  const [storage, setStorage] = useState<StorageStatus>(persist ? { kind: 'loading' } : { kind: 'unavailable' });
+  const hydrated = useRef(!persist);
+  const discarded = useRef(false);
+  // after loading a good record there is nothing new to write; an unreadable record is replaced at once
+  const skipNextSave = useRef(false);
+
+  // load once; nothing is saved until this finishes, so an empty first render cannot overwrite saved work
+  useEffect(() => {
+    if (!persist) return;
+    let cancelled = false;
+    loadWorkspace()
+      .then(({ data, discarded: dropped }) => {
+        if (cancelled) return;
+        discarded.current = dropped;
+        if (data) dispatch({ type: 'hydrate', state: data });
+        skipNextSave.current = !dropped;
+        hydrated.current = true;
+        setStorage({ kind: 'saved', at: data?.savedAt ?? Date.now(), discarded: dropped });
+      })
+      .catch(() => {
+        if (cancelled) return;
+        hydrated.current = true;
+        setStorage({ kind: 'unavailable' });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [persist]);
+
+  // save shortly after every change
+  useEffect(() => {
+    if (!persist || !hydrated.current || storage.kind === 'unavailable' || storage.kind === 'loading') return;
+    if (skipNextSave.current) {
+      skipNextSave.current = false;
+      return;
+    }
+    const t = window.setTimeout(() => {
+      const { last } = state;
+      saveWorkspace({
+        version: PERSIST_VERSION,
+        savedAt: Date.now(),
+        articles: state.articles,
+        params: state.params,
+        refs: state.refs,
+        last: last
+          ? { result: last.result, params: last.params, ms: last.ms, finishedAt: last.finishedAt, stale: last.revision !== state.revision }
+          : null,
+      })
+        .then(() => setStorage({ kind: 'saved', at: Date.now(), discarded: discarded.current }))
+        .catch((e: unknown) => setStorage({ kind: 'error', message: e instanceof Error ? e.message : String(e) }));
+    }, 300);
+    return () => window.clearTimeout(t);
+    // storage is read only to gate the first save: depending on it would re-save after every status update
+  }, [persist, state.articles, state.params, state.refs, state.last, state.revision, storage.kind === 'loading']);
 
   const displayName = useMemo(() => {
     const unique = uniqueSources(state.articles);
@@ -169,7 +250,7 @@ export function WorkspaceProvider({ children, initial }: { children: ReactNode; 
     }
   }, [state.articles, state.params, state.revision, state.running]);
 
-  const api = useMemo(() => ({ state, dispatch, displayName, colorOf, run }), [state, displayName, colorOf, run]);
+  const api = useMemo(() => ({ state, storage, dispatch, displayName, colorOf, run }), [state, storage, displayName, colorOf, run]);
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }
 

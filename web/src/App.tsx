@@ -5,6 +5,7 @@
 
 import { Desk } from '@/features/workspace/Desk';
 import { Proof } from '@/features/results/Proof';
+import { StorageStatus } from '@/components/StorageStatus';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function App() {
@@ -23,8 +24,16 @@ export function App() {
             Compare how outlets report the same story: what they agree on, and what only one of them says.
           </p>
         </div>
-        <ThemeToggle />
+        <div className="flex shrink-0 items-center gap-3">
+          <div className="hidden text-right sm:block">
+            <StorageStatus />
+          </div>
+          <ThemeToggle />
+        </div>
       </header>
+      <div className="-mt-2 px-4 pb-3 sm:hidden">
+        <StorageStatus />
+      </div>
       <div className="grid grid-cols-[minmax(0,1fr)] min-[900px]:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[360px_minmax(0,1fr)]">
         <aside
           aria-label="Desk"

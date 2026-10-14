@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { plural } from '@/lib/utils';
 import { fmt4, prfScores, runTotals } from '@/nlp/metrics';
 import { useWorkspace } from '@/state/workspace';
+import { ExportBar } from './ExportBar';
 import { StoryView } from './StoryView';
 
 export function Results() {
@@ -22,7 +23,8 @@ export function Results() {
 
   return (
     <div className="pt-6">
-      <p className="max-w-[46rem] text-sm leading-6 text-ink-muted" aria-live="polite">
+      <ExportBar />
+      <p className="mt-4 max-w-[46rem] text-sm leading-6 text-ink-muted" aria-live="polite">
         {plural(res.n_docs, 'article')} grouped into {plural(res.clusters.length, 'story', 'stories')}.{' '}
         {totals.sentences > 0 &&
           `Duplicates removed: ${(100 * totals.redundancy).toFixed(1)} % of sentences (${totals.sentences} → ${totals.pooled}). `}
