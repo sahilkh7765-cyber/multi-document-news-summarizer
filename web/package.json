@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "server": "node server/index.ts",
+    "start": "node server/index.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.0",
@@ -17,6 +19,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "happy-dom": "^21.0.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.4",
@@ -25,12 +28,19 @@
   "dependencies": {
     "@fontsource-variable/newsreader": "^5.3.0",
     "@fontsource-variable/public-sans": "^5.3.0",
+    "@hono/node-server": "^2.1.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "hono": "^4.13.13",
     "lucide-react": "^1.55.0",
+    "mammoth": "^1.13.0",
+    "pdfjs-dist": "^6.4.299",
     "radix-ui": "^1.8.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tailwind-merge": "^3.7.0"
+  },
+  "engines": {
+    "node": ">=22.18"
   }
 }

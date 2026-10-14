@@ -150,12 +150,20 @@ app.py's patterns (`title`, `Inc`, `i.e`) is spelled out as `[iİı]`, and fixtu
 | `TfidfVectorizer` raises "empty vocabulary" when every token is a stop word, which crashes the run | All-zero vectors: similarities are 0, so nothing is merged or deduplicated | A crash is not a useful result |
 | `exclusive` / `coverage` are dicts | JS objects with the same keys | Integer-like source names (e.g. `"2024"`) would be ordered first by JS. The UI orders by the `sources` array, so only the raw JSON key order can differ. |
 
-## Outside the parity scope
+## Outside the parity scope: reading files and pages
 
-The input parsers are different software from app.py's:
-- PDF: pdfjs-dist instead of pypdf
-- DOCX: mammoth instead of python-docx
-- URLs: the browser's `DOMParser` instead of BeautifulSoup's `html.parser`
+The input parsers are different software from app.py's. pypdf, python-docx and BeautifulSoup are not
+installed in this environment, so app.py's own upload and URL paths could not be run for comparison.
+Once the text exists, everything downstream (`parse_header`, sentence splitting, the pipeline) is
+covered by the tests above.
 
-They may produce different raw text from the same file. Once the text exists, everything downstream
-(`parse_header`, sentence splitting, the pipeline) is covered by the tests above.
+| Input | app.py | TS port | Known differences |
+|---|---|---|---|
+| .txt / .md | `data.decode('utf-8', errors='ignore')` | `TextDecoder('utf-8')`, then U+FFFD removed | A leading byte-order mark is removed. Python keeps it, which stops a `Source:` header on line 1 from being recognised. A genuine U+FFFD in the text is also removed. |
+| .pdf | pypdf `extract_text()` per page, joined by `
+` | pdf.js text items, with a line break where pdf.js reports one; pages joined by `
+` | Word spacing and line breaks can differ between the two extractors. A PDF with no text layer is reported as probably scanned instead of producing an empty article. |
+| .docx | python-docx paragraphs joined by `
+` | mammoth `extractRawText` (paragraphs separated by a blank line) | Same sentences after whitespace normalisation. mammoth also returns text from tables, which python-docx's `paragraphs` skips. |
+| URL | `urllib` with `User-Agent: Mozilla/5.0`, 20 s timeout, UTF-8 'ignore'; BeautifulSoup `html.parser`, every `<p>` through `get_text(' ', strip=True)`, kept if it has 5 or more words | The local helper fetches with the same User-Agent, timeout and decoding; the browser's `DOMParser` and the same `<p>` / `get_text` / 5-word rule run in TS | The HTML5 parser and `html.parser` can nest malformed markup differently. The helper also refuses loopback and private-network addresses, caps pages at 5 MB and rejects non-HTML content types. |
+| Default outlet name | file name without its last extension; URL host as typed, minus a leading `www.` | same (unit-tested) | none |

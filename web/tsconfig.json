@@ -28,10 +28,12 @@
         "./src/*"
       ]
     },
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "erasableSyntaxOnly": true
   },
   "include": [
     "src",
+    "server",
     "vite.config.ts"
   ]
 }

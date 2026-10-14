@@ -10,10 +10,9 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   worker: { format: 'es' },
-  server: {
-    // the URL helper (server/) runs on 8787; the dev server forwards /api to it
-    proxy: { '/api': 'http://localhost:8787' },
-  },
+  // the URL helper (server/) runs on 8787; dev and preview servers forward /api to it
+  server: { proxy: { '/api': 'http://127.0.0.1:8787' } },
+  preview: { proxy: { '/api': 'http://127.0.0.1:8787' } },
   test: {
     include: ['src/**/*.test.ts'],
   },
