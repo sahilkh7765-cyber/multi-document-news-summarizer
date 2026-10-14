@@ -69,46 +69,50 @@ export function Evaluation({ cluster, tauUniq, reference, onReferenceChange }: P
         />
       </div>
 
-      <div className="relative overflow-x-auto">
-        <table className="min-w-[28rem] border-collapse text-sm">
+      <div>
+        {/* metrics as rows, systems as columns: two number columns fit any screen width */}
+        <table className="w-full max-w-[32rem] border-collapse text-sm">
           <caption className="mb-2 text-left text-sm font-medium text-ink">
             {reference.trim() ? 'ROUGE F1 against the reference, and Distinct-n' : 'Distinct-n (add a reference to also score ROUGE)'}
           </caption>
           <thead>
             <tr className="border-b border-rule">
-              <th scope="col" className="py-2 pr-6 text-left font-medium text-ink-muted">
-                System
+              <th scope="col" className="py-2 pr-3 text-left font-medium text-ink-muted">
+                Metric
               </th>
-              {metrics.map((m) => (
-                <th key={m} scope="col" className="px-3 py-2 text-right font-medium text-ink-muted">
-                  {m}
+              {rows.map((r) => (
+                <th key={r.name} scope="col" className="px-2 py-2 text-right font-medium text-ink-muted sm:px-3">
+                  {r.name}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {rows.map((r) => (
-              <tr key={r.name} className="border-b border-rule last:border-b-0">
-                <th scope="row" className="py-2 pr-6 text-left font-medium">
-                  {r.name}
-                </th>
-                {metrics.map((m) => {
-                  const best = Math.max(...rows.map((x) => x.v[m]));
-                  const isBest = r.v[m] === best && rows.some((x) => x.v[m] !== best);
-                  return (
-                    <td key={m} className={cn('tabular px-3 py-2 text-right', isBest && 'font-semibold')}>
-                      {fmt4(r.v[m])}
-                      {isBest && <span className="sr-only"> (higher)</span>}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
+            {metrics.map((m) => {
+              const best = Math.max(...rows.map((x) => x.v[m]));
+              const tie = rows.every((x) => x.v[m] === best);
+              return (
+                <tr key={m} className="border-b border-rule last:border-b-0">
+                  <th scope="row" className="py-2 pr-3 text-left font-medium">
+                    {m}
+                  </th>
+                  {rows.map((r) => {
+                    const isBest = !tie && r.v[m] === best;
+                    return (
+                      <td key={r.name} className={cn('tabular px-2 py-2 text-right sm:px-3', isBest && 'font-semibold')}>
+                        {fmt4(r.v[m])}
+                        {isBest && <span className="sr-only"> (higher)</span>}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-        <p className="mt-2 text-xs text-ink-muted">
+        <p className="mt-2 max-w-[32rem] text-xs leading-5 text-ink-muted">
           LEAD-2 takes the first two sentences of each article, up to {cluster.summary.length} sentences. Bold marks
-          the higher score.
+          the higher score in each row.
         </p>
       </div>
 
@@ -121,15 +125,15 @@ export function Evaluation({ cluster, tauUniq, reference, onReferenceChange }: P
               title="How the exclusivity threshold changes detection (scored against the fact labels)"
             />
           )}
-          <div className="relative overflow-x-auto">
-            <table className="min-w-[24rem] border-collapse text-sm">
+          <div>
+            <table className="w-full max-w-[32rem] border-collapse text-sm">
               <caption className="mb-2 text-left text-sm font-medium text-ink">
                 Threshold sensitivity{scored ? '' : ': sentences flagged as exclusive at each threshold'}
               </caption>
               <thead>
                 <tr className="border-b border-rule">
                   {['τ_uniq', 'Flagged', ...(scored ? ['Precision', 'Recall', 'F1'] : [])].map((h) => (
-                    <th key={h} scope="col" className="px-3 py-2 text-right font-medium text-ink-muted first:pl-0 first:text-left">
+                    <th key={h} scope="col" className="px-2 py-2 text-right font-medium text-ink-muted first:pl-0 first:text-left sm:px-3">
                       {h}
                     </th>
                   ))}
@@ -141,16 +145,16 @@ export function Evaluation({ cluster, tauUniq, reference, onReferenceChange }: P
                   const isCurrent = Math.abs(t - tauUniq) < 1e-9;
                   return (
                     <tr key={t} className={cn('border-b border-rule last:border-b-0', isCurrent && 'bg-pencil-wash')}>
-                      <th scope="row" className="tabular py-1.5 pr-3 text-left font-medium">
+                      <th scope="row" className="tabular whitespace-nowrap py-1.5 pr-2 text-left font-medium">
                         {t.toFixed(2)}
-                        {isCurrent && <span className="ml-2 text-xs font-normal text-ink-muted">current</span>}
+                        {isCurrent && <span className="ml-1.5 text-xs font-normal text-ink-muted">now</span>}
                       </th>
-                      <td className="tabular px-3 py-1.5 text-right">{det}</td>
+                      <td className="tabular px-2 py-1.5 text-right sm:px-3">{det}</td>
                       {s && (
                         <>
-                          <td className="tabular px-3 py-1.5 text-right">{fmt4(s.precision)}</td>
-                          <td className="tabular px-3 py-1.5 text-right">{fmt4(s.recall)}</td>
-                          <td className="tabular px-3 py-1.5 text-right">{fmt4(s.f1)}</td>
+                          <td className="tabular px-2 py-1.5 text-right sm:px-3">{fmt4(s.precision)}</td>
+                          <td className="tabular px-2 py-1.5 text-right sm:px-3">{fmt4(s.recall)}</td>
+                          <td className="tabular px-2 py-1.5 text-right sm:px-3">{fmt4(s.f1)}</td>
                         </>
                       )}
                     </tr>

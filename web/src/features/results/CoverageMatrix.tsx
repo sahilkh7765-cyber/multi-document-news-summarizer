@@ -15,16 +15,25 @@ interface Props {
 }
 
 function Cell({ reports, origin }: { reports: boolean; origin: boolean }) {
+  // marks, not controls: a tinted circle with a tick (reports it), a solid circle (the summary sentence
+  // was taken from this outlet), a plain dash (does not report it)
   return (
-    <span
-      className={cn(
-        'mx-auto flex size-7 items-center justify-center rounded-[3px]',
-        reports ? 'bg-pencil text-pencil-ink' : 'border border-rule text-ink-muted',
-        origin && 'ring-2 ring-ink ring-offset-2 ring-offset-paper',
+    <span className="flex justify-center">
+      {reports ? (
+        <span
+          className={cn(
+            'flex size-6 items-center justify-center rounded-full',
+            origin ? 'bg-pencil text-pencil-ink' : 'bg-pencil-wash text-pencil',
+          )}
+        >
+          <Check aria-hidden className="size-3.5" strokeWidth={3} />
+        </span>
+      ) : (
+        <Minus aria-hidden className="size-4 text-ink-muted" />
       )}
-    >
-      {reports ? <Check aria-hidden className="size-4" strokeWidth={3} /> : <Minus aria-hidden className="size-4" />}
-      <span className="sr-only">{origin ? 'Reports it (summary sentence taken from here)' : reports ? 'Reports it' : 'Does not report it'}</span>
+      <span className="sr-only">
+        {origin ? 'Reports it (summary sentence taken from here)' : reports ? 'Reports it' : 'Does not report it'}
+      </span>
     </span>
   );
 }
@@ -35,19 +44,19 @@ export function CoverageMatrix({ cluster, colorOf }: Props) {
     <div>
       {/* table from 640px */}
       <div className="relative hidden overflow-x-auto sm:block">
-        <table className="w-full border-collapse text-sm">
+        <table className="border-collapse text-sm">
           <caption className="sr-only">Which outlet reports each summary sentence</caption>
           <thead>
             <tr className="border-b border-rule">
-              <th scope="col" className="py-2 pr-4 text-left font-medium text-ink-muted">
+              <th scope="col" className="py-2 pr-6 text-left font-medium text-ink-muted">
                 Outlet
               </th>
               {cluster.summary.map((s, i) => (
-                <th key={i} scope="col" className="tabular w-12 px-1 py-2 text-center font-medium text-ink" title={s}>
+                <th key={i} scope="col" className="tabular w-11 px-1 py-2 text-center font-medium text-ink" title={s}>
                   S{i + 1}
                 </th>
               ))}
-              <th scope="col" className="tabular py-2 pl-3 text-right font-medium text-ink-muted">
+              <th scope="col" className="tabular py-2 pl-5 text-right font-medium text-ink-muted">
                 Reports
               </th>
             </tr>
@@ -57,7 +66,7 @@ export function CoverageMatrix({ cluster, colorOf }: Props) {
               const count = cluster.coverage.filter((row) => row[src]).length;
               return (
                 <tr key={src} className="border-b border-rule last:border-b-0">
-                  <th scope="row" className="py-2 pr-4 text-left font-normal">
+                  <th scope="row" className="py-2 pr-6 text-left font-normal">
                     <SourceTag name={src} slot={colorOf(src)} />
                   </th>
                   {cluster.coverage.map((row, i) => (
@@ -65,7 +74,7 @@ export function CoverageMatrix({ cluster, colorOf }: Props) {
                       <Cell reports={Boolean(row[src])} origin={cluster.summary_from[i] === src} />
                     </td>
                   ))}
-                  <td className="tabular py-2 pl-3 text-right text-ink-muted">
+                  <td className="tabular py-2 pl-5 text-right text-ink-muted">
                     {count} of {n}
                   </td>
                 </tr>
@@ -109,10 +118,9 @@ export function CoverageMatrix({ cluster, colorOf }: Props) {
         })}
       </ol>
 
-      <p className="mt-3 hidden text-xs leading-5 text-ink-muted sm:block">
-        S1, S2… are the summary sentences above, in order. A filled square means the outlet has a sentence at
-        least as similar as the exclusivity threshold; the ringed square is the outlet the sentence was taken
-        from.
+      <p className="mt-3 hidden max-w-[46rem] text-xs leading-5 text-ink-muted sm:block">
+        S1, S2… are the summary sentences above, in order. A tick means the outlet has a sentence at least as
+        similar as the exclusivity threshold; the solid circle marks the outlet the sentence was taken from.
       </p>
     </div>
   );

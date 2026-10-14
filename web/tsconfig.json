@@ -34,6 +34,8 @@
   "include": [
     "src",
     "server",
-    "vite.config.ts"
+    "e2e",
+    "vite.config.ts",
+    "playwright.config.ts"
   ]
 }

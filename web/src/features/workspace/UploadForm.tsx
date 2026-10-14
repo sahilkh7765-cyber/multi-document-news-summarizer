@@ -73,6 +73,8 @@ export function UploadForm() {
           type="file"
           multiple
           accept={ACCEPT_ATTR}
+          aria-label="Article files (.txt, .md, .pdf or .docx)"
+          tabIndex={-1}
           className="sr-only"
           onChange={(e) => {
             void addFiles([...(e.target.files ?? [])]);

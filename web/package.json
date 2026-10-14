@@ -10,9 +10,12 @@
     "test": "vitest run",
     "typecheck": "tsc -b --noEmit",
     "server": "node server/index.ts",
-    "start": "node server/index.ts"
+    "start": "node server/index.ts",
+    "e2e": "playwright test",
+    "test:all": "vitest run && playwright test"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.64.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.5",

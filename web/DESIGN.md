@@ -27,7 +27,7 @@ came from. The interface follows that working surface:
 |---|---|---|
 | Cream newsprint background + red accent | Generic "editorial" look; cream with a warm accent is the most common generated palette | Cool white proof on a blue-grey desk, with the copy editor's **blue pencil** as the only accent |
 | Broadsheet columns, hairline rules everywhere, zero radius | Reads as a newspaper pastiche, and the app is a working tool, not a newspaper | Two surfaces with different tones (desk / proof). Rules only where they separate rows of data. Small radius (4px) on controls, none on the proof sheet |
-| Big stat tiles (articles / stories / redundancy) at the top of results | The default dashboard opening | The consensus lede opens every story. Counts sit in one sentence of plain prose under the story heading |
+| Big stat tiles (articles / stories / redundancy) at the top of results | The default dashboard opening | The run's verdict is one serif sentence with a pencil margin rule, plus an inline row of precision / recall / F1 when fact labels exist. Then the consensus lede opens every story |
 | ALL-CAPS tracked labels and monospace data labels | Template chrome | Sentence-case labels in the UI sans; figures in tabular-nums of the same sans |
 | Source colour chips | Colour alone carries meaning | Every source mark is a coloured **margin bar plus the outlet's name**; colour is never the only signal |
 
@@ -144,9 +144,15 @@ The base unit is 4px; Tailwind's default steps (4, 8, 12, 16, 24, 32, 48) are us
   - Hovering, or focusing the plot and using the arrow keys, shows a crosshair and a tooltip with all
     three values at that threshold.
   - The same numbers are always in a table directly under the chart.
-- **Coverage matrix:** sources as rows and summary sentences S1…Sk as columns. A filled pencil square
-  plus a ✓ glyph means "reports this"; an empty outlined square plus "—" means it doesn't. On phones it
-  turns into one block per summary sentence listing the outlets that report it.
+- **Coverage matrix:** sources as rows and summary sentences S1…Sk as columns, in a compact table.
+  - The cells are marks, not controls: a tinted pencil circle with a tick means "reports this"; a solid
+    pencil circle means "the summary sentence was taken from here"; a plain muted dash means "does not
+    report it".
+  - On phones it turns into one block per summary sentence listing the outlets that report it.
+- **Score tables:** metrics are rows and systems are columns (LEAD-2 baseline, this pipeline). Two number
+  columns fit any width, so nothing scrolls sideways on a phone.
+- **Narrow charts (under 480px):** the end-of-line labels are dropped (the legend still names every
+  series), and the x-axis is labelled every 0.10.
 
 ## Motion
 
@@ -163,3 +169,18 @@ The base unit is 4px; Tailwind's default steps (4, 8, 12, 16, 24, 32, 48) are us
   added".
 - Errors say what happened and what to do next ("This PDF has no text layer — it is probably a scan.
   Paste the text instead.").
+
+## Review log (phase 6)
+
+The three weakest points found in the screenshot review, and what changed:
+
+1. **The coverage matrix looked like a grid of ticked checkboxes** and was louder than the lede: saturated
+   filled squares, and ringed "origin" cells that read as selected inputs. It now uses quiet circular
+   marks, a dash for absent and a compact table width.
+2. **The evaluation section broke on phones.** Fixed minimum table widths caused sideways scrolling and
+   hid Distinct and F1; chart ticks collided. The score table was transposed, the fixed widths removed,
+   and the chart given a narrow mode. The chart also no longer renders at a default width before it is
+   measured, which had briefly widened the page on phones.
+3. **The run's verdict was buried**: a small grey paragraph at the top, and precision / recall / F1 at
+   the very bottom. Both now open the results. Phones also get a "Go to results" link in the run bar,
+   because the results sit below the whole desk.

@@ -53,6 +53,12 @@ export function RunControl() {
             Summarized {plural(last.result.n_docs, 'article')} in {Math.max(1, Math.round(last.ms))} ms.
           </p>
         )}
+        {last && !state.running && (
+          // phones: the results sit below the whole desk
+          <a href="#proof" className="inline-block text-sm font-medium text-pencil underline underline-offset-4 min-[900px]:hidden">
+            Go to results
+          </a>
+        )}
       </div>
     </div>
   );

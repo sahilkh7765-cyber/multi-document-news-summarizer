@@ -7,7 +7,7 @@
 // a legend sits above and each line is labelled at its end. Hover or arrow keys show a crosshair and the
 // values at that threshold. The same numbers are always in the table under the chart.
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
+import { useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import { fmt4, type Scores } from '@/nlp/metrics';
 
 export interface SweepPoint {
@@ -24,7 +24,9 @@ const SERIES = [
 type Shape = (typeof SERIES)[number]['shape'];
 
 const H = 232;
-const M = { top: 14, right: 84, bottom: 36, left: 40 };
+const MARGIN = { top: 14, right: 84, bottom: 36, left: 40 };
+/** below this width the end-of-line labels are dropped (the legend still names every series) */
+const NARROW = 480;
 
 function Marker({ shape, x, y, color }: { shape: Shape; x: number; y: number; color: string }) {
   const common = { fill: color, stroke: 'var(--paper)', strokeWidth: 2 };
@@ -59,20 +61,28 @@ function spread(ys: number[], gap: number, min: number, max: number): number[] {
 
 export function SweepChart({ points, current, title }: { points: SweepPoint[]; current: number; title: string }) {
   const wrap = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(560);
+  // null until the column has been measured: the SVG is not rendered before then, so it can never
+  // push its column wider than the screen
+  const [measured, setWidth] = useState<number | null>(null);
+  const width = measured ?? 0;
   const [active, setActive] = useState<number | null>(null);
   const id = useId();
 
-  useEffect(() => {
+  // measure before the first paint, so the chart never renders wider than its column
+  useLayoutEffect(() => {
     const el = wrap.current;
     if (!el) return;
-    const ro = new ResizeObserver(([e]) => e && setWidth(Math.max(280, Math.floor(e.contentRect.width))));
+    const fit = (w: number) => setWidth(Math.max(260, Math.floor(w)));
+    fit(el.clientWidth);
+    const ro = new ResizeObserver(([e]) => e && fit(e.contentRect.width));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
 
   const tMin = points[0]!.t;
   const tMax = points[points.length - 1]!.t;
+  const narrow = width < NARROW;
+  const M = narrow ? { ...MARGIN, right: 14 } : MARGIN;
   const iw = width - M.left - M.right;
   const ih = H - M.top - M.bottom;
   const x = (t: number) => M.left + ((t - tMin) / (tMax - tMin)) * iw;
@@ -122,17 +132,21 @@ export function SweepChart({ points, current, title }: { points: SweepPoint[]; c
         ))}
       </ul>
       <div ref={wrap} className="relative">
+        {measured === null ? (
+          <div style={{ height: H }} aria-hidden />
+        ) : (
         <svg
           width={width}
           height={H}
-          className="block touch-none select-none rounded-control focus-visible:outline-2"
+          className="block max-w-full touch-none select-none rounded-control focus-visible:outline-2"
           role="group"
           aria-label={`${title}. Use the left and right arrow keys to read values at each threshold; the table below lists them all.`}
           aria-describedby={`${id}-table`}
           tabIndex={0}
           onPointerMove={onPointer}
           onPointerDown={onPointer}
-          onPointerLeave={() => setActive(null)}
+          // touch screens fire pointerleave as the finger lifts; keep the tapped value showing
+          onPointerLeave={(e) => e.pointerType === 'mouse' && setActive(null)}
           onKeyDown={onKey}
           onBlur={() => setActive(null)}
         >
@@ -145,11 +159,14 @@ export function SweepChart({ points, current, title }: { points: SweepPoint[]; c
               </text>
             </g>
           ))}
-          {points.map((p) => (
-            <text key={p.t} x={x(p.t)} y={M.top + ih + 18} textAnchor="middle" className="fill-ink-muted text-[12px] tabular">
-              {p.t.toFixed(2)}
-            </text>
-          ))}
+          {points
+            // narrow: label every 0.10 only, so the 0.05 steps do not collide
+            .filter((p) => !narrow || Math.round(p.t * 100) % 10 === 0)
+            .map((p) => (
+              <text key={p.t} x={x(p.t)} y={M.top + ih + 18} textAnchor="middle" className="fill-ink-muted text-[12px] tabular">
+                {p.t.toFixed(2)}
+              </text>
+            ))}
           <text x={M.left + iw / 2} y={H - 2} textAnchor="middle" className="fill-ink-muted text-[12px]">
             Exclusivity threshold (τ_uniq)
           </text>
@@ -182,12 +199,15 @@ export function SweepChart({ points, current, title }: { points: SweepPoint[]; c
               {points.map((p) => (
                 <Marker key={p.t} shape={s.shape} x={x(p.t)} y={y(p.scores[s.key])} color={s.color} />
               ))}
-              <text x={M.left + iw + 10} y={labelY[si]} dy="0.32em" className="fill-ink text-[12px]">
-                {s.label}
-              </text>
+              {!narrow && (
+                <text x={M.left + iw + 10} y={labelY[si]} dy="0.32em" className="fill-ink text-[12px]">
+                  {s.label}
+                </text>
+              )}
             </g>
           ))}
         </svg>
+        )}
 
         {ap && (
           <div
