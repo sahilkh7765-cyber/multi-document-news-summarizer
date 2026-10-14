@@ -1,0 +1,8 @@
+# NLP PROJECT - MULTI-DOCUMENT NEWS SUMMARIZATION WITH CROSS-SOURCE COVERAGE COMPARISON
+# SAHIL JABIR KHAN 24AD1199
+# Binary formats must never get line-ending conversion (it corrupts PDF byte offsets).
+*.pdf binary
+*.docx binary
+*.pptx binary
+*.png binary
+*.woff2 binary
